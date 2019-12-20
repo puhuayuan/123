@@ -88,6 +88,7 @@ public class NewsController {
 	/**
 	 * 添加新闻
 	 * @return 
+	 * 传入的对象有点多
 	 */
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
