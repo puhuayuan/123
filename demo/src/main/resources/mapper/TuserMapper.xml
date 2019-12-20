@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.swjtuhc.demo.mapper.TuserDao">
+    <select id="queryUser" resultType="edu.swjtuhc.demo.model.Tuser">
+        select * FROM tuser ORDER BY userId ASC
+    </select>
+
+    <select id="userLogin" resultType="edu.swjtuhc.demo.model.Tuser">
+         SELECT *
+        FROM tuser
+        WHERE
+        userName = #{userName} AND passWord = #{passWord}
+    </select>
+
+    <delete id="deleteUser">
+        DELETE FROM
+        tuser
+        WHERE
+        userId =
+        #{userId}
+    </delete>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId"
+            keyColumn="userId" parameterType="edu.swjtuhc.demo.model.Tuser">
+        INSERT INTO
+        tuser (userName,passWord)
+        VALUES
+        (#{userName},#{passWord})
+    </insert>
+
+    <select id="getUserId" resultType="edu.swjtuhc.demo.model.Tuser">
+        SELECT *
+        FROM tuser
+        WHERE
+        userId=#{userId}
+    </select>
+    <update id="updateUser" parameterType="edu.swjtuhc.demo.model.Tuser">
+        update tuser
+        <set>
+            <if test="userName != null">userName=#{userName},</if>
+            <if test="passWord != null">passWord=#{passWord}</if>
+        </set>
+        where userId=#{userId}
+    </update>
+
+    <select id="getUserName" resultType="edu.swjtuhc.demo.model.Tuser">
+        SELECT *
+        FROM tuser
+        WHERE
+        userName=#{userName}
+    </select>
+
+    <select id="countUser" resultType="int" >
+        SELECT count(*)
+        FROM tuser
+    </select>
+</mapper>
+
+

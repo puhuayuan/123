@@ -1,5 +1,12 @@
+server:
+  port: 8080
+  tomcat:
+    max-http-header-size: 8192
+
+
 Spring:
   datasource:
+    
     username: root
     password: 2000726phy
     url: jdbc:mysql://localhost:3306/test?useSSL=false&&serverTimezone=GMT%2B8
@@ -7,3 +14,4 @@ Spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: edu.swjtuhc.demo.mapper
+   

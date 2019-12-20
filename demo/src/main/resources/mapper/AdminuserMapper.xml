@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.swjtuhc.demo.mapper.AdminuserDao" >
+ 
+    <!-- 查询-->
+    <select id="selectadminUser" resultType="edu.swjtuhc.demo.model.AdminUser">
+        select * from auser where aname = #{aname} and apassword = #{apassword};
+    </select>
+     
+   
+    <!-- 新增-->
+    <insert id="inserUser">
+         insert auser (aname,apassword) values (#{aname},#{apassword})
+    </insert>
+</mapper>
