@@ -89,6 +89,7 @@ public class NewsController {
 	 * 添加新闻
 	 * @return 
 	 * 传入的对象有点多
+	 * 业务逻辑需要再整理一下
 	 */
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
