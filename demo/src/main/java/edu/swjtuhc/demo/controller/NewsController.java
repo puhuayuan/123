@@ -73,7 +73,7 @@ public class NewsController {
 	}
 
 	/**
-	 * 更新新闻
+	 * 更新新闻 
 	 */
 	@RequestMapping(value = "/updateUser",method=RequestMethod.POST)
 	@ResponseBody
