@@ -12,4 +12,9 @@
     <insert id="inserUser">
          insert auser (aname,apassword) values (#{aname},#{apassword})
     </insert>
+    
+    <!-- 根据姓名查询-->
+     <select id="queryUserByUsername" resultType="edu.swjtuhc.demo.model.AdminUser">
+        select * from auser where aname = #{aname};
+    </select>
 </mapper>

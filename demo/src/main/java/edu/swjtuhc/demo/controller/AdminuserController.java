@@ -46,10 +46,17 @@ public class AdminuserController {
     @RequestMapping(value = "/admindoregist",method = RequestMethod.GET)
     @ResponseBody
     public String doRegist(AdminUser adminuser,Map<String,Object> map) {
-        adminuserserviceimpl.inserUser(adminuser.getAname(), adminuser.getApassword());
-      
-        map.put("msg","注册成功");
-        return "success";
+    	boolean flag = adminuserserviceimpl.chkUsrNameExists(adminuser.getAname());
+    	if(flag){
+    		adminuserserviceimpl.inserUser(adminuser.getAname(), adminuser.getApassword());
+            map.put("msg","注册成功");
+            return "success";
+    	}else {
+    		adminuserserviceimpl.inserUser(adminuser.getAname(), adminuser.getApassword());
+            map.put("msg","用户名已经存在，请修改用户名！");
+            return "用户名已经存在，请修改用户名！";
+    	}
+        
     }
     
 

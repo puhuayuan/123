@@ -1,5 +1,7 @@
 package edu.swjtuhc.demo.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,13 @@ public class AdminuserServiceImpl implements AdminuserService {
         
 	}
 
-
+	public boolean chkUsrNameExists(String username) {
+		List<AdminUser> list = adminuserdao.queryUserByUsername(username);
+		if(list.size()==0)
+			return true;
+		else {
+			return false;
+		}
+	}
 	
 }
