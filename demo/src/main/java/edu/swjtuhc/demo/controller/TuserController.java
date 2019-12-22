@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.swjtuhc.demo.model.News;
 import edu.swjtuhc.demo.model.Tuser;
 import edu.swjtuhc.demo.serviceImpl.TuserServiceImpl;
 
@@ -29,6 +30,16 @@ public class TuserController {
 	    map.put("list", list);
 	    return new ModelAndView("index3", map);
 	}
+	@RequestMapping(value = "/queryAlluser", method=RequestMethod.POST)
+	@ResponseBody
+	public List<News> getAlluser() {
+	    
+	   List<News> list=new ArrayList<News>();
+	    list =  tuserServiceImpl.getAlluser();
+	   
+	    return list;
+	}
+	
 	/**
 	 * 根据用户名得到用户信息
 	 * @return 

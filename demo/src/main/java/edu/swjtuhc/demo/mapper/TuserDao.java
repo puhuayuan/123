@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import edu.swjtuhc.demo.model.News;
 import edu.swjtuhc.demo.model.Tuser;
 @Mapper
 public interface TuserDao {
@@ -22,6 +23,8 @@ public interface TuserDao {
 	    Tuser userLogin(String userName,String passWord);
 
 	    int countUser();
+
+		List<News> getAlluser();
 
 	
 }

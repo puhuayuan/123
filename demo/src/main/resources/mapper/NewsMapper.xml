@@ -49,8 +49,17 @@
         title=#{title}
     </select>
 
-    <select id="countUser" resultType="int" >
+    <select id="countUser"   resultType="int" >
         SELECT count(*)
         FROM tuser
+    </select>
+    <select id="findAllNewsBytypeId" parameterType="edu.swjtuhc.demo.model.News" resultType="edu.swjtuhc.demo.model.News" >
+        SELECT * from news where typeId=#{typeId}
+    </select>
+     <select id="findAllNewsBytypeName" parameterType="edu.swjtuhc.demo.model.News" resultType="edu.swjtuhc.demo.model.News" >
+        SELECT * from news inner join newstype on newstype.typeId=news.typeId where typeName=#{typename}
+    </select>
+    <select id="getAllnews"  resultType="edu.swjtuhc.demo.model.News" >
+        SELECT * from news 
     </select>
 </mapper>

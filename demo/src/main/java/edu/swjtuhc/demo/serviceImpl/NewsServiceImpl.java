@@ -3,6 +3,8 @@ package edu.swjtuhc.demo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.DocFlavor.STRING;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,27 @@ public class NewsServiceImpl {
 	public  void insertNews(News news) {
 		// TODO Auto-generated method stub
 		newsDao.insertNews(news);
+	}
+
+	public News getnewstypeId(int typeId) {
+		// TODO Auto-generated method stub
+		 
+		return newsDao.getnewstypeId(typeId);
+	}
+
+	public List<News> findAllNewsBYtypeId(int typeId) {
+		// TODO Auto-generated method stub
+		return newsDao.findAllNewsBytypeId( typeId);
+	}
+
+	public List<News> findAllNewsBYtypeName(String typename) {
+		// TODO Auto-generated method stub
+		return newsDao.findAllNewsBytypeName( typename);
+	}
+
+	public List<News> getAllnews() {
+		// TODO Auto-generated method stub
+		return newsDao.getAllnews();
 	}
 
 }

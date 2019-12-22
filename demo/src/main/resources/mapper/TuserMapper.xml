@@ -55,6 +55,11 @@
         SELECT count(*)
         FROM tuser
     </select>
+    <select id="getAlluser" resultType="edu.swjtuhc.demo.model.Tuser">
+        SELECT *
+        FROM tuser
+       
+    </select>
 </mapper>
 
 

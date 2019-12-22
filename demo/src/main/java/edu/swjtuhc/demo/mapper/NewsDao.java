@@ -19,4 +19,14 @@ public interface NewsDao {
 	void deleteNews(int newsId);
 
 	 void insertNews(News news) ;
+
+	News getnewstypeId(int typeId);
+
+	List<News> findAllNewsBytypeId(int typeId);
+
+	List<News> findAllNewsBytypeName(String typename);
+
+	List<News> getAllnews();
+
+	
 }

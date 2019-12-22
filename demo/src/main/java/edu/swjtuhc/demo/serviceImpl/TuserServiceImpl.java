@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.swjtuhc.demo.mapper.TuserDao;
+import edu.swjtuhc.demo.model.News;
 import edu.swjtuhc.demo.model.Tuser;
 import edu.swjtuhc.demo.service.TuserService;
 
@@ -60,6 +61,12 @@ public class TuserServiceImpl implements TuserService{
         return allUser;
     }
 
+	public List<News> getAlluser() {
+		// TODO Auto-generated method stub
+		return tuserDao.getAlluser();
+	}
+
+	
 
 
 

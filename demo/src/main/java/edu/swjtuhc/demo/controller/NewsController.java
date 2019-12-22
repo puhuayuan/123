@@ -31,6 +31,21 @@ public class NewsController {
 	    map.put("list", list);
 	    return new ModelAndView("index3", map);
 	}
+
+	
+	@RequestMapping(value = "/query", method=RequestMethod.POST)
+	@ResponseBody
+	public List<News> getNews() {
+	    
+	   List<News> list=new ArrayList<>();
+	    list =  newsServiceImpl.getAllnews();
+	   
+	    return list;
+	}
+	
+	
+	
+	
 	/**
 	 * 根据标题得到新闻
 	 * @return 
@@ -108,6 +123,24 @@ public class NewsController {
 	    return news;
 	}
 	
-	
-	
+	@RequestMapping(value = "/classify", method = RequestMethod.POST)
+	@ResponseBody
+	public List<News> classify(int typeId) {
+		 
+		 List<News> list=newsServiceImpl.findAllNewsBYtypeId(typeId);
+		 
+		 return list;
+		
+		
+	}
+	@RequestMapping(value = "/classifybyName", method = RequestMethod.GET)
+	@ResponseBody
+	public List<News> classifybyName(String typename) {
+		 
+		 List<News> list=newsServiceImpl.findAllNewsBYtypeName(typename);
+		 
+		 return list;
+		
+		
+	}
 }

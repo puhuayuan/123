@@ -9,7 +9,8 @@ public class News {
      private String datetime;
      private String author;
      private String state;
-	
+	 private String typename;
+	 
 	public int getNewsId() {
 		return newsId;
 	}
