@@ -1,5 +1,7 @@
 package edu.swjtuhc.demo.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.swjtuhc.demo.model.News;
 
 import edu.swjtuhc.demo.serviceImpl.NewsServiceImpl;
-import edu.swjtuhc.demo.serviceImpl.TuserServiceImpl;
+
 
 @RequestMapping("/news")
 @Controller
@@ -65,11 +67,11 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/querybyId", method = RequestMethod.GET)
 	@ResponseBody
-	public List<News> getNewsById(int newsId) {
-	   
-	   ArrayList<News> list=newsServiceImpl.getnewsId(newsId);
-	    
-	    return list;
+	public News getNewsById(int newsId) {
+	Map<String, Object> mm = new HashMap<String, Object>();
+	   News news=newsServiceImpl.getnewsId(newsId);
+	   mm.put("news", news);
+	    return news;
 	}
 
 	/**
@@ -77,20 +79,21 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/updateNews",method=RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<News> updateNews(@RequestParam("author") String author, @RequestParam("content") String content,@RequestParam("datetime") String datetime,@RequestParam("imgurl") String imgurl,@RequestParam("newsId") int newsId,@RequestParam("state") String state,@RequestParam("title") String title,@RequestParam("typeId") int typeId) {
-	    News news=new News();
-	    news.setAuthor(author);
-	    news.setContent(content);
-	    news.setDatetime(datetime);
-	    news.setImgurl(imgurl);
-	    news.setNewsId(newsId);
-	    news.setState(state);
-	    news.setTitle(title);
-	    news.setTypeId(typeId);
-		ArrayList<News> list = newsServiceImpl.getnewsId(newsId);
+	public String updateNews( String author,  String content ,  int newsId, String imgurl, String datetime, String title, int typeId, String state ) {
+	    
+	   News news= newsServiceImpl.getnewsId(newsId);
+	 
+		   news.setAuthor(author);
+		   news.setContent(content);
+		   news.setDatetime(datetime);
+		   news.setImgurl(imgurl);
+		   
+		   news.setState(state);
+		   news.setTitle(title);
+		   news.setTypeId(typeId);
 	   
-	    newsServiceImpl.updateNews(list);
-	    return list;
+	    newsServiceImpl.updateNews(news);
+	    return "success";
 	}
 
 	/**

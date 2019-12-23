@@ -13,9 +13,9 @@ public interface NewsDao {
 
 	 News getTitle();
 
-	 ArrayList<News> getnewsId() ;
+	 News getnewsId(int newsId) ;
 
-	void updateNews(@Param("list")ArrayList<News> list);
+	void updateNews(News news);
 
 	void deleteNews(int newsId);
 

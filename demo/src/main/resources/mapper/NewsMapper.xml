@@ -19,8 +19,7 @@
         newsId =
         #{newsId}
     </delete>
-    <insert id="insertNews" useGeneratedKeys="true" keyProperty="newsId"
-            keyColumn="newsId" parameterType="edu.swjtuhc.demo.model.News">
+    <insert id="insertNews"  parameterType="edu.swjtuhc.demo.model.News">
         INSERT INTO
         news (typeId,title,content,imgurl,datetime,author,state)
         VALUES
@@ -36,8 +35,12 @@
     <update id="updateNews" parameterType="edu.swjtuhc.demo.model.News">
         update news
         <set>
-            <if test="title != null">title=#{title}</if>
-            <if test="content != null">content=#{content}</if>
+            <if test=" title!= null">title=#{title},</if>
+            <if test=" content!= null">content=#{content},</if>
+            <if test=" imgurl!= null">imgurl=#{imgurl},</if>
+            <if test=" datetime!= null">datetime=#{datetime},</if>
+            <if test=" author!= null">author=#{author},</if>
+            <if test=" content!= null">state=#{state}</if>
         </set>
         where newsId=#{newsId}
     </update>
