@@ -65,20 +65,20 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/querybyId", method = RequestMethod.GET)
 	@ResponseBody
-	public News getNewsById(int newsId) {
-	    Map<String, Object> mm = new HashMap<String, Object>();
-	    News news =newsServiceImpl.getnewsId(newsId);
-	    mm.put("news", news);
-	    return news;
+	public List<News> getNewsById(int newsId) {
+	   
+	   ArrayList<News> list=newsServiceImpl.getnewsId(newsId);
+	    
+	    return list;
 	}
 
 	/**
 	 * 更新新闻 
 	 */
-	@RequestMapping(value = "/updateUser",method=RequestMethod.POST)
+	@RequestMapping(value = "/updateNews",method=RequestMethod.POST)
 	@ResponseBody
-	public String updateNews(@RequestParam("author") String author, @RequestParam("content") String content,@RequestParam("datetime") String datetime,@RequestParam("imgurl") String imgurl,@RequestParam("newsId") int newsId,@RequestParam("state") String state,@RequestParam("title") String title,@RequestParam("typeId") int typeId) {
-	    News news = newsServiceImpl.getnewsId(newsId);
+	public ArrayList<News> updateNews(@RequestParam("author") String author, @RequestParam("content") String content,@RequestParam("datetime") String datetime,@RequestParam("imgurl") String imgurl,@RequestParam("newsId") int newsId,@RequestParam("state") String state,@RequestParam("title") String title,@RequestParam("typeId") int typeId) {
+	    News news=new News();
 	    news.setAuthor(author);
 	    news.setContent(content);
 	    news.setDatetime(datetime);
@@ -87,17 +87,20 @@ public class NewsController {
 	    news.setState(state);
 	    news.setTitle(title);
 	    news.setTypeId(typeId);
-	    newsServiceImpl.updateNews(news);
-	    return "success";
+		ArrayList<News> list = newsServiceImpl.getnewsId(newsId);
+	   
+	    newsServiceImpl.updateNews(list);
+	    return list;
 	}
 
 	/**
 	 * 删除新闻
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@ResponseBody
 	public String delete(int newsId) {
 	    newsServiceImpl.deleteNews(newsId);
-	    return newsId+"已删除";
+	    return "已删除";
 	}
 
 	/**

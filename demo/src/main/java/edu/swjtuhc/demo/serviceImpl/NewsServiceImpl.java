@@ -27,14 +27,14 @@ public class NewsServiceImpl {
 		return newsDao.getTitle();
 	}
 
-	public News getnewsId( int newsId) {
+	public ArrayList<News> getnewsId( int newsId) {
 		// TODO Auto-generated method stub
 		return newsDao.getnewsId();
 	}
 
-	public void updateNews(News news) {
+	public void updateNews(ArrayList<News> list) {
 		// TODO Auto-generated method stub
-		newsDao.updateNews(news);
+		newsDao.updateNews(list);
 	}
 
 	

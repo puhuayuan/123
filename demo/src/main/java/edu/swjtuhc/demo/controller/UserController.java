@@ -49,9 +49,15 @@ public class UserController {
 	    @ResponseBody
 	    public String register(String userName,String password){
 	        //TODO异常处理后续完成
-	        userService.register(userName,password);
-	        System.out.println("注册成功");
-	        return "注册成功";
+	    	boolean flag = userService.chkUsrNameExists(userName);
+	    	if (flag) {
+	    		userService.register(userName,password);
+		        System.out.println("注册成功");
+		        return "注册成功";
+			}else {
+				return "用戶名重复，请重新输入用户名";
+			}
+	        
 	    }
 
 	    /**

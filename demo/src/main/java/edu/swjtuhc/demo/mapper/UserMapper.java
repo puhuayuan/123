@@ -34,5 +34,7 @@ public interface UserMapper {
 
 	AdminUser inseradminUser(String Aname, String Apassword);
 
+	List<User> queryUserByUsername(String userName);
+
 	
 }

@@ -1,11 +1,14 @@
 package edu.swjtuhc.demo.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.swjtuhc.demo.mapper.RuserDao;
 import edu.swjtuhc.demo.model.AdminUser;
 import edu.swjtuhc.demo.model.Ruser;
+import edu.swjtuhc.demo.model.Tuser;
 import edu.swjtuhc.demo.service.RuserService;
 
 
@@ -25,11 +28,21 @@ public class RuserServiceImpl implements RuserService{
          return true;
     }
  
-    public Ruser selectUser(String username,String password) {
+    public Tuser selectUser(String userName,String passWord) {
         
-        System.out.println(username+" "+username);
-        return ruserdao.selectUser(username,password);
+        System.out.println(userName+" "+userName);
+        return ruserdao.selectUser(userName,passWord);
         
     }
+
+	public boolean chkUsrNameExists(String userName) {
+		// TODO Auto-generated method stub
+		List<Tuser> list = ruserdao.queryUserByUsername(userName);
+		if(list.size()==0)
+			return true;
+		else {
+			return false;
+		}
+	}
     
 }

@@ -98,5 +98,12 @@ public class UserServiceImpl implements UserService {
         return adminuser;
 		
 }
-
+    public boolean chkUsrNameExists(String userName) {
+    	List<User> list = userMapper.queryUserByUsername(userName);
+		if(list.size()==0)
+			return true;
+		else {
+			return false;
+		}
+    }
 }

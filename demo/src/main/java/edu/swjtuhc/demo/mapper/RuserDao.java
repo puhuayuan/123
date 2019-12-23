@@ -1,13 +1,18 @@
 package edu.swjtuhc.demo.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-import edu.swjtuhc.demo.model.Ruser;
+
+import edu.swjtuhc.demo.model.Tuser;
 @Mapper
 public interface RuserDao {
-	public void inserUser(String username,String password);
+	public void inserUser(String userName,String passWord);
 	 
-	   public Ruser selectUser(String username,String password);
+	   public Tuser selectUser(String userName,String passWord);
+
+	public List<Tuser> queryUserByUsername(String userName);
 	   
 
 }

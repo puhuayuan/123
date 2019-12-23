@@ -26,4 +26,6 @@ public interface UserService {
 	public  AdminUser adminlogin(String Aname,String Apassword);
 	
 	public  AdminUser adminregister(String Aname,String Apassword);
+
+	public boolean chkUsrNameExists(String userName);
 }

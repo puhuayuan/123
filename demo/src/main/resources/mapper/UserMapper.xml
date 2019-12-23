@@ -245,4 +245,8 @@
         VALUES
         (#{Aname},#{ApassWord})
   </insert>
+  <!-- 根据姓名查询-->
+     <select id="queryUserByUsername" resultType="edu.swjtuhc.demo.model.AdminUser">
+        select * from user where username = #{userName};
+    </select>
 </mapper>

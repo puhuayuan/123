@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import edu.swjtuhc.demo.model.News;
 
@@ -12,9 +13,9 @@ public interface NewsDao {
 
 	 News getTitle();
 
-	 News getnewsId() ;
+	 ArrayList<News> getnewsId() ;
 
-	void updateNews(News news);
+	void updateNews(@Param("list")ArrayList<News> list);
 
 	void deleteNews(int newsId);
 
