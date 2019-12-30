@@ -60,7 +60,7 @@ public class RuserServiceImpl implements RuserService{
 	@Override
 	public int register(Tuser tuser) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
     
 }
