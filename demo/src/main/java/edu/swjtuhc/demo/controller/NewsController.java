@@ -54,12 +54,12 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/querybyTitle", method=RequestMethod.POST)
 	@ResponseBody
-	public News getNews(@RequestParam("title") String title) {
+	public List<News> getNews(@RequestParam("title") String title) {
 	    
-	   News news = new News();
-	    news =  newsServiceImpl.getTitle();
+		List<News> list=new ArrayList<News>();
+	    list =  newsServiceImpl.getTitle(title);
 	   
-	    return news;
+	    return list;
 	}
 
 	/**

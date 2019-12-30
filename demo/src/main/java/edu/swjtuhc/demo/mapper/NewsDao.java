@@ -11,7 +11,7 @@ import edu.swjtuhc.demo.model.News;
 @Mapper
 public interface NewsDao {
 
-	 News getTitle();
+	 List<News> getTitle( String title);
 
 	 News getnewsId(int newsId) ;
 

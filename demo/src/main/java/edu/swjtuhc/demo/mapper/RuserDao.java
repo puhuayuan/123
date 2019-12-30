@@ -13,6 +13,8 @@ public interface RuserDao {
 	   public Tuser selectUser(String userName,String passWord);
 
 	public List<Tuser> queryUserByUsername(String userName);
-	   
+//	   public Tuser selectUserByUsername(String userName);
+//	   public int insertTuser(Tuser tuser);
 
+	
 }

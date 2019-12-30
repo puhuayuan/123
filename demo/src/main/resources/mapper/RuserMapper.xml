@@ -17,4 +17,14 @@
      <select id="queryUserByUsername" resultType="edu.swjtuhc.demo.model.Tuser">
         select * from tuser where userName= #{userName};
     </select>
+    <select id="selectUserByUsername" parameterType="java.lang.String" resultType="edu.swjtuhc.demo.model.Tuser">
+        select * from tuser where userName = #{userName} and passWord = #{passWord};
+    </select>
+    <insert id="insertTuser"  parameterType="edu.swjtuhc.demo.model.Tuser">
+        INSERT INTO
+        tuser (userName,passWord)
+        VALUES
+        (#{userName},#{passWord})
+    </insert>
+    
 </mapper>

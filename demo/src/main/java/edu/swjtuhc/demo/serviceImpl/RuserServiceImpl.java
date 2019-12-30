@@ -44,5 +44,23 @@ public class RuserServiceImpl implements RuserService{
 			return false;
 		}
 	}
+//	 public int register(Tuser tuser) {
+//		 
+//		  tuser=ruserdao.selectUserByUsername(tuser.getUserName());
+//		 int i;
+//		 if (tuser==null) {
+//			i=ruserdao.insertTuser(tuser);
+//		}else {
+//			i=2;
+//		}
+//		return i;
+//		 
+//	 }
+
+	@Override
+	public int register(Tuser tuser) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }

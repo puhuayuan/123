@@ -22,9 +22,9 @@ public class NewsServiceImpl {
 		return null;
 	}
 
-	public News getTitle() {
+	public List<News> getTitle(String title) {
 		// TODO Auto-generated method stub
-		return newsDao.getTitle();
+		return newsDao.getTitle(title);
 	}
 
 	public News getnewsId( int newsId) {
