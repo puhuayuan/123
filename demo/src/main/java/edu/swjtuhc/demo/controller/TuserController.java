@@ -58,13 +58,11 @@ public class TuserController {
 	/**
 	 * 根据id获取用户信息
 	 */
-	@RequestMapping(value = "/querybyId", method = RequestMethod.GET)
+	@RequestMapping(value = "/querybyId", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getUserById( @RequestParam(value="userId",required=false) Integer userId) {
-	    Map<String, Object> mm = new HashMap<String, Object>();
-	    Tuser tuser =tuserServiceImpl.getUserId(userId);
-	    mm.put("user", tuser);
-	    return mm;
+	public Tuser getUserById(@RequestParam("userId") String userId) {
+	    Tuser tuser =tuserServiceImpl.getUserId(Integer.parseInt(userId));
+	    return tuser;
 	}
 
 	/**
@@ -95,10 +93,10 @@ public class TuserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Tuser save(@RequestBody Tuser tuser1) {
+	public Tuser save(String userName,String passWord) {
 	    Tuser tuser = new Tuser(); 
-	    tuser.setUserName(tuser.getUserName());
-	    tuser.setPassWord(tuser.getPassWord());
+	    tuser.setUserName(userName);
+	    tuser.setPassWord(passWord);
 	    tuserServiceImpl.insertUser(tuser);
 	    return tuser;
 	}

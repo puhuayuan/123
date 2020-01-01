@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,9 +57,9 @@ public class NewsController {
 	 * 根据标题得到新闻
 	 * @return 
 	 */
-	@RequestMapping(value = "/querybyTitle/{title}", method=RequestMethod.POST)
+	@RequestMapping(value = "/querybyTitle", method=RequestMethod.POST)
 	@ResponseBody
-	public List<News> getNews(@PathVariable("title") String title) {
+	public List<News> getNews( String title) {
 	    
 		List<News> list=new ArrayList<News>();
 	    list =  newsServiceImpl.getTitle(title);
@@ -91,7 +92,6 @@ public class NewsController {
 		   news.setContent(content);
 		   news.setDatetime(datetime);
 		   news.setImgurl(imgurl);
-		   
 		   news.setState(state);
 		   news.setTitle(title);
 		   news.setTypeId(typeId);
@@ -132,7 +132,9 @@ public class NewsController {
 	    newsServiceImpl.insertNews(news);
 	    return news;
 	}
-	
+	/**
+	 * 通过新闻类名id新闻分类
+	 */
 	@RequestMapping(value = "/classify", method = RequestMethod.POST)
 	@ResponseBody
 	public List<News> classify(int typeId) {
@@ -143,6 +145,9 @@ public class NewsController {
 		
 		
 	}
+	/**
+	 * 通过新闻类名新闻分类
+	 */
 	@RequestMapping(value = "/classifybyName", method = RequestMethod.GET)
 	@ResponseBody
 	public List<News> classifybyName( String typename) {
