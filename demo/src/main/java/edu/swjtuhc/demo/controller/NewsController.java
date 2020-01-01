@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,9 +56,9 @@ public class NewsController {
 	 * 根据标题得到新闻
 	 * @return 
 	 */
-	@RequestMapping(value = "/querybyTitle", method=RequestMethod.POST)
+	@RequestMapping(value = "/querybyTitle/{title}", method=RequestMethod.POST)
 	@ResponseBody
-	public List<News> getNews(@RequestParam("title") String title) {
+	public List<News> getNews(@PathVariable("title") String title) {
 	    
 		List<News> list=new ArrayList<News>();
 	    list =  newsServiceImpl.getTitle(title);
@@ -99,9 +103,9 @@ public class NewsController {
 	/**
 	 * 删除新闻
 	 */
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String delete(int newsId) {
+	public String delete( @RequestParam("newsId") int newsId) {
 	    newsServiceImpl.deleteNews(newsId);
 	    return "已删除";
 	}
@@ -141,7 +145,7 @@ public class NewsController {
 	}
 	@RequestMapping(value = "/classifybyName", method = RequestMethod.GET)
 	@ResponseBody
-	public List<News> classifybyName(String typename) {
+	public List<News> classifybyName( String typename) {
 		 
 		 List<News> list=newsServiceImpl.findAllNewsBYtypeName(typename);
 		 

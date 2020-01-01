@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,11 +60,11 @@ public class TuserController {
 	 */
 	@RequestMapping(value = "/querybyId", method = RequestMethod.GET)
 	@ResponseBody
-	public Tuser getUserById(int userId) {
+	public Map<String, Object> getUserById( @RequestParam(value="userId",required=false) Integer userId) {
 	    Map<String, Object> mm = new HashMap<String, Object>();
 	    Tuser tuser =tuserServiceImpl.getUserId(userId);
 	    mm.put("user", tuser);
-	    return tuser;
+	    return mm;
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class TuserController {
 	 * 删除用户
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int userId) {
+	public String delete(@RequestParam("userId") int userId) {
 	    tuserServiceImpl.deleteUser(userId);
 	    return userId+"已删除";
 	}
@@ -94,10 +95,10 @@ public class TuserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Tuser save(String userName, String passWord) {
-	    Tuser tuser = new Tuser();
-	    tuser.setUserName(userName);
-	    tuser.setPassWord(passWord);
+	public Tuser save(@RequestBody Tuser tuser1) {
+	    Tuser tuser = new Tuser(); 
+	    tuser.setUserName(tuser.getUserName());
+	    tuser.setPassWord(tuser.getPassWord());
 	    tuserServiceImpl.insertUser(tuser);
 	    return tuser;
 	}

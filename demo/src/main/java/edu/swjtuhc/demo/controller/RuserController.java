@@ -45,7 +45,7 @@ public class RuserController {
 	        Tuser user1 = ruserserviceimpl.selectUser(tuser.getUserName(),tuser.getPassWord());
 	        System.out.print(user1);
 	         if(user1==null){
-	             result.put("msg","");
+	             result.put("msg", "密码或账号错误!");
 	            return result;
 	         }else {
 	             result.put("msg", "登入成功");
