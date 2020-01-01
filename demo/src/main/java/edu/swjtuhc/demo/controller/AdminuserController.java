@@ -16,7 +16,6 @@ import edu.swjtuhc.demo.model.AdminUser;
 import edu.swjtuhc.demo.model.Tuser;
 import edu.swjtuhc.demo.serviceImpl.AdminuserServiceImpl;
 import edu.swjtuhc.demo.serviceImpl.TuserServiceImpl;
-import net.sf.json.JSONObject;
 
 @RequestMapping("/adminuser")
 @Controller
@@ -24,34 +23,39 @@ public class AdminuserController {
 	@Autowired
     private AdminuserServiceImpl adminuserserviceimpl;
    
-    
-    @RequestMapping(value = "/admindologin",method = RequestMethod.POST)
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+ 
+    @RequestMapping("/regist")
+    public String regist(){
+        return "regist";
+    }
+    @RequestMapping(value = "/admindologin",method = RequestMethod.GET)
     @ResponseBody
-    public JSONObject doLogin(@RequestBody AdminUser adminuser){
-    	JSONObject result=new JSONObject();
+    public String doLogin(AdminUser adminuser,Map<String,Object> map){
         AdminUser adminuser1 = adminuserserviceimpl.selectadminUser(adminuser.getAname(),adminuser.getApassword());
         System.out.print(adminuser1);
-        if(adminuser1==null){
-            result.put("msg", "密码或账号错误!");
-           return result;
-        }else {
-            result.put("msg", "登入成功");
-            return result;
-        }
+         if(adminuser1==null){
+             map.put("msg", "密码或账号错误!");
+            return "fail";
+         }else {
+             map.put("msg", "登入成功");
+             return "success";
+         }
     }
-    @RequestMapping(value = "/admindoregist",method = RequestMethod.POST)
+    @RequestMapping(value = "/admindoregist",method = RequestMethod.GET)
     @ResponseBody
-    public Map doRegist(@RequestBody AdminUser adminuser) {
-    	 Map result=new HashedMap();
+    public String  doRegist( AdminUser adminuser,Map<String,Object> map) {
+    	
     	boolean flag = adminuserserviceimpl.chkUsrNameExists(adminuser.getAname());
     	if(flag){
     		adminuserserviceimpl.inserUser(adminuser.getAname(), adminuser.getApassword());
-            result.put("msg","注册成功");
-            return result;
+    		 map.put("msg","state");
+		        return "success";
     	}else {
-    		adminuserserviceimpl.inserUser(adminuser.getAname(), adminuser.getApassword());
-            result.put("msg","用户名已经存在，请修改用户名！");
-            return result;
+    		return "用户名重复，请重新输入";
     	}
         
     }
